@@ -3,4 +3,15 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "products#index"
+
+=begin
+  resources :carts do
+    post 'add_product', on: :member
+    post 'remove_product', on: :member
+  end
+=end
+
+  post 'carts/add_product'
+  post 'carts/remove_product'
+
 end
