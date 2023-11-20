@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
 =end
 
+  get 'carts/show'
   post 'carts/add_product'
   post 'carts/remove_product'
 
