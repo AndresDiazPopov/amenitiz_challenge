@@ -1,0 +1,42 @@
+<%= turbo_frame_tag "products_cart_modal" do %>
+  <div data-controller="carts--modal">
+    <div data-carts--modal-target="sidebarBg" data-action="click->carts--modal#close" class="fixed z-10 w-full h-full top-0 left-0 bg-black bg-opacity-40"></div>
+    <div data-carts--modal-target="sidebar" class="bg-gray-100 fixed top-0 right-0 z-20 w-full sm:w-3/6 lg:w-2/6 h-full overflow-y-scroll shadow flex flex-col ease-in-out duration-300 p-5 <%= 'translate-x-full' if open_modal %>">
+      <div data-action="click->carts--modal#close" class="flex items-center space-x-4">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-8 w-8 cursor-pointer duration-150 hover:text-red-500">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </div>
+      <h1 class="mb-10 text-center text-2xl font-bold">Your shopping cart</h1>
+      <div class="sm:mx-auto max-w-full justify-center px-6">
+
+        <%= render partial: "product_card", collection: carts_products, as: :carts_product %>
+
+        <!-- Sub total -->
+        <div class="mt-6 rounded-lg border bg-white p-6 shadow-md md:mt-0">
+          <div class="mb-2 flex justify-between">
+            <p class="text-gray-700">Subtotal</p>
+            <div class="flex">
+              <p class="text-gray-700">129.99</p><p>€</p>
+            </div>
+          </div>
+          <div class="flex justify-between">
+            <p class="text-gray-700">Discount</p>
+            <div class="flex">
+              <p class="line-through text-red-700">4.99</p><p class="line-through text-red-700">€</p>
+            </div>
+          </div>
+          <hr class="my-4" />
+          <div class="flex justify-between">
+            <p class="text-lg font-bold">Total</p>
+            <div class="flex">
+              <p class="mb-1 text-lg font-bold">134.98</p><p class="mb-1 text-lg font-bold">€</p>
+            </div>
+          </div>
+          <button class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Buy</button>
+        </div>
+        <!-- Sub total -->
+      </div>
+    </div>
+  </div>
+<% end %>
