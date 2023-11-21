@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_19_073429) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_21_174044) do
   create_table "carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -26,6 +26,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_19_073429) do
     t.index ["product_id"], name: "index_carts_products_on_product_id"
   end
 
+  create_table "offers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.string "discount_type"
+    t.float "discount_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "offers_products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "offer_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["offer_id"], name: "index_offers_products_on_offer_id"
+    t.index ["product_id"], name: "index_offers_products_on_product_id"
+  end
+
   create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "code", null: false
     t.string "name", null: false
@@ -36,4 +53,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_19_073429) do
 
   add_foreign_key "carts_products", "carts"
   add_foreign_key "carts_products", "products"
+  add_foreign_key "offers_products", "offers"
+  add_foreign_key "offers_products", "products"
 end

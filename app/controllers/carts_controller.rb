@@ -6,6 +6,9 @@ class CartsController < ApplicationController
 
   def add_product
     cart = ::Carts::AddAndRemoveProduct.execute(product_id: params[:id], quantity: params[:quantity], cart: @cart)
+    total_price = ::Carts::GetTotalPrice.execute(carts_products: cart.carts_products)
+    total_discount = ::Carts::GetTotalDiscount.execute(carts_products: cart.carts_products)
+
     number_products_cart = cart.carts_products.sum(:quantity)
     respond_to do |format|
       format.turbo_stream do
