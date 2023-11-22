@@ -8,34 +8,32 @@
         </svg>
       </div>
       <h1 class="mb-10 text-center text-2xl font-bold">Your shopping cart</h1>
-      <div class="sm:mx-auto max-w-full justify-center px-6">
+      <div class="max-w-full justify-center px-6">
 
         <%= render partial: "product_card", collection: carts_products, as: :carts_product %>
 
-        <!-- Sub total -->
         <div class="mt-6 rounded-lg border bg-white p-6 shadow-md md:mt-0">
           <div class="mb-2 flex justify-between">
             <p class="text-gray-700">Subtotal</p>
             <div class="flex">
-              <p class="text-gray-700">135.50</p><p>€</p>
+              <p class="text-gray-700"><%= format('%.2f', total_price.round(2)) %></p><p>€</p>
             </div>
           </div>
           <div class="flex justify-between">
             <p class="text-gray-700">Discount</p>
             <div class="flex">
-              <p class="line-through text-red-700">5.50</p><p class="line-through text-red-700">€</p>
+              <p class="font-bold text-red-700"><%= format('%.2f', total_discount.round(2)) %></p><p class="line-through text-red-700">€</p>
             </div>
           </div>
           <hr class="my-4" />
           <div class="flex justify-between">
             <p class="text-lg font-bold">Total</p>
             <div class="flex">
-              <p class="mb-1 text-lg font-bold">130</p><p class="mb-1 text-lg font-bold">€</p>
+              <p class="mb-1 text-lg font-bold"><%= format('%.2f', (total_price - total_discount).round(2)) %></p><p class="mb-1 text-lg font-bold">€</p>
             </div>
           </div>
           <button class="mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600">Buy</button>
         </div>
-        <!-- Sub total -->
       </div>
     </div>
   </div>

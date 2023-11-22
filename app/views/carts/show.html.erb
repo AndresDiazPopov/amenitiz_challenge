@@ -1,1 +1,4 @@
-<%= render partial: "products_cart_modal", locals: { carts_products: @carts_products, open_modal: true } %>
+<%= render partial: "products_cart_modal", locals: { carts_products: @carts_products,
+                                                     total_price: @total_price,
+                                                     total_discount: @total_discount,
+                                                     open_modal: true } %>
